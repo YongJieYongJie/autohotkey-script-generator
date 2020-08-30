@@ -82,13 +82,19 @@ def generate_bindings():
 ;; alphabets and numeric keys, but functions as normal Enter key when pressed
 ;; alone or with Alt and/or Control keys.
 ;; Doesn't support Control + Shift + <key>.
-;; Doesn't support Control + Tab.\
+;; Doesn't support Control + Tab.
+;; For potential workarounds, see
+;; https://www.autohotkey.com/docs/Hotkeys.htm#combo\
 '''
 
   bindings = [SECTION_HEADING]
 
-  for key in 'abcdefghijklmnopqrstuvwxyz1234567890':
+  for key in 'abcdefghijklmnopqrstuvwxyz1234567890[':
     bindings.append(BINDING_TEMPLATE.format(KEY=key))
+
+  # Special treatment for tilde because it is the escape character.
+  bindings.append('Enter & `::Send {Ctrl down}``{Ctrl Up}\n'
+                  'CapsLock & `::Send {Ctrl down}``{Ctrl Up}')
 
   bindings.append('$Enter::Send {Enter} ; Enter key will send Enter when'
                   ' pressed and released by itself')
