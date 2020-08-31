@@ -89,7 +89,7 @@ def generate_bindings():
 
   bindings = [SECTION_HEADING]
 
-  for key in 'abcdefghijklmnopqrstuvwxyz1234567890[':
+  for key in 'abcdefghijklmnopqrstuvwxyz1234567890[=-':
     bindings.append(BINDING_TEMPLATE.format(KEY=key))
 
   # Special treatment for tilde because it is the escape character.
